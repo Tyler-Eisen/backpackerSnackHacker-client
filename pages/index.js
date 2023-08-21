@@ -1,12 +1,21 @@
-import { Button } from 'react-bootstrap';
-import { signOut } from '../utils/auth';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../utils/context/authContext';
+import CityCard from '../components/CityCard';
+import { getCities } from '../utils/data/cityData';
 
 function Home() {
   const { user } = useAuth();
+  const [cities, setCities] = useState([]);
+
+  useEffect(() => {
+    getCities().then((data) => {
+      setCities(data);
+    });
+  }, []);
+
   return (
     <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
+      className="home-container"
       style={{
         height: '90vh',
         padding: '30px',
@@ -14,12 +23,15 @@ function Home() {
         margin: '0 auto',
       }}
     >
-      <h1>Hello {user.fbUser.displayName}! </h1>
-      <p>Your Bio: {user.bio}</p>
-      <p>Click the button below to logout!</p>
-      <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
-        Sign Out
-      </Button>
+      <h1 className="home-title">Hello {user.fbUser.displayName}! </h1>
+      <h2 className="cities-title">Cities:</h2>
+      <div className="city-card-container">
+        {cities.map((city) => (
+          <section key={`city--${city.id}`} className="city">
+            <CityCard cityObj={city} />
+          </section>
+        ))}
+      </div>
     </div>
   );
 }
