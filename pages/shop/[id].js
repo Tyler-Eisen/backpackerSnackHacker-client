@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { Button } from 'react-bootstrap';
 import ProductCard from '../../components/ProductCard';
 import { getProductsByShop } from '../../utils/data/productData';
 
@@ -25,6 +26,14 @@ function ShopProducts() {
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
+      <Button
+        className="create-btn"
+        onClick={() => {
+          router.push(`/product/new?shopId=${shopId}`);
+        }}
+      >
+        Create New Product
+      </Button>
     </div>
   );
 }

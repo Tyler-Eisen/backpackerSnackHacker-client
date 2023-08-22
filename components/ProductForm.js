@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import { useAuth } from '../utils/context/authContext';
-import getCityShops from '../utils/data/shopData';
 import { createProduct } from '../utils/data/productData';
 
 const initialState = {
@@ -14,15 +13,12 @@ const initialState = {
 
 const ProductForm = () => {
   const router = useRouter();
+  const { shopId } = router.query;
   const { user } = useAuth();
-  const [currentProduct, setCurrentProduct] = useState(initialState);
-  const [shops, setShops] = useState([]);
-
-  useEffect(() => {
-    getCityShops()
-      .then(setShops)
-      .catch(console.error);
-  }, []);
+  const [currentProduct, setCurrentProduct] = useState({
+    ...initialState,
+    shop: shopId || '',
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,7 +35,7 @@ const ProductForm = () => {
       ...currentProduct,
       userId: user.id,
     };
-
+    console.warn('Payload:', payload);
     createProduct(payload)
       .then(() => router.push(`/shop/${currentProduct.shop}`))
       .catch((error) => {
@@ -80,21 +76,6 @@ const ProductForm = () => {
           value={currentProduct.image_url}
           onChange={handleChange}
         />
-      </Form.Group>
-
-      <Form.Group className="mb-3">
-        <Form.Label>Shop</Form.Label>
-        <Form.Select
-          name="shop"
-          required
-          value={currentProduct.shop}
-          onChange={handleChange}
-        >
-          <option value="">Select a Shop</option>
-          {shops.map((shop) => (
-            <option key={shop.id} value={shop.id}>{shop.name}</option>
-          ))}
-        </Form.Select>
       </Form.Group>
 
       <Button type="submit">Create Product</Button>
