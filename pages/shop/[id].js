@@ -23,7 +23,7 @@ function ShopProducts() {
       }}
       >
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product.id} product={product} onUpdate={() => getProductsByShop(shopId).then(setProducts)} />
         ))}
       </div>
       <Button

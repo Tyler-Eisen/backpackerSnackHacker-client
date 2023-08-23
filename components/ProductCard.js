@@ -10,14 +10,10 @@ function ProductCard({ product, onUpdate }) {
   console.warn({ product });
   console.warn({ user });
 
-  const handleDelete = async () => {
-    if (window.confirm('Are you sure you want to delete this product?')) {
-      try {
-        await deleteProduct(product.id);
-        onUpdate();
-      } catch (error) {
-        console.error('Error deleting product:', error);
-      }
+  const deleteThisProduct = () => {
+    if (window.confirm('Sure you want to delete this event?')) {
+      deleteProduct(product?.id);
+      onUpdate();
     }
   };
   return (
@@ -33,7 +29,7 @@ function ProductCard({ product, onUpdate }) {
           >
             Edit
           </button>
-          <button type="button" onClick={handleDelete}>
+          <button type="button" onClick={deleteThisProduct}>
             Delete
           </button>
         </>
