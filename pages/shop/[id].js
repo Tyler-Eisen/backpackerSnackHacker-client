@@ -9,11 +9,15 @@ function ShopProducts() {
   const router = useRouter();
   const { id: shopId } = router.query;
 
+  const showProducts = () => {
+    console.warn({ shopId });
+    getProductsByShop(shopId).then((data) => setProducts(data));
+  };
+
   useEffect(() => {
-    if (shopId) {
-      getProductsByShop(shopId).then(setProducts);
-    }
-  }, [shopId]);
+    showProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
@@ -23,7 +27,7 @@ function ShopProducts() {
       }}
       >
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} onUpdate={() => getProductsByShop(shopId).then(setProducts)} />
+          <ProductCard key={product.id} product={product} onUpdate={showProducts} />
         ))}
       </div>
       <Button

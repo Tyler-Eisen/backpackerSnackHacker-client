@@ -11,9 +11,8 @@ function ProductCard({ product, onUpdate }) {
   console.warn({ user });
 
   const deleteThisProduct = () => {
-    if (window.confirm('Sure you want to delete this event?')) {
-      deleteProduct(product?.id);
-      onUpdate();
+    if (window.confirm('Delete Post?')) {
+      deleteProduct(product.id).then(() => onUpdate());
     }
   };
   return (
