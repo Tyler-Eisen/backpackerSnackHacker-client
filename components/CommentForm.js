@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import { useAuth } from '../utils/context/authContext';
@@ -10,7 +11,7 @@ const initialState = {
   content: '',
 };
 
-const CommentForm = () => {
+const CommentForm = ({ onUpdate }) => {
   const router = useRouter();
   const productId = router.query.id;
   const { user } = useAuth();
@@ -36,11 +37,16 @@ const CommentForm = () => {
     const payload = {
       ...currentComment,
       userId: user.id,
+      productId,
     };
     console.warn('Payload:', payload);
     createComment(payload)
+      .then(() => {
+        onUpdate();
+        setCurrentComment(initialState);
+      })
       .catch((error) => {
-        console.error('Failed to create product:', error);
+        console.error('Failed to create comment:', error);
       });
   };
 
@@ -60,6 +66,10 @@ const CommentForm = () => {
       <Button type="submit">Comment</Button>
     </Form>
   );
+};
+
+CommentForm.propTypes = {
+  onUpdate: PropTypes.func.isRequired, // Validate the onUpdate prop
 };
 
 export default CommentForm;

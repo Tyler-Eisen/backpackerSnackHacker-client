@@ -53,10 +53,10 @@ function ProductDetails() {
       <div>
         <h2>Comments</h2>
         {comments.map((comment) => (
-          <CommentCard key={comment.id} commentObj={comment} onUpdate={showComments} />
+          <CommentCard key={comment.id} commentObj={comment} onUpdate={() => getCommentsByProduct(productId).then(setComments)} />
         ))}
       </div>
-      <div> <CommentForm />
+      <div> <CommentForm onUpdate={showComments} />
       </div>
     </>
   );
