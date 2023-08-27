@@ -12,7 +12,9 @@ function CommentCard({ commentObj, onUpdate }) {
     return null;
   }
 
-  const isCurrentUserComment = user && user.uid === commentObj.userId;
+  const isCurrentUserComment = user.id === commentObj.user;
+  console.warn('user:', user);
+  console.warn('commentObj:', commentObj);
 
   const deleteThisComment = () => {
     if (window.confirm('Are you sure you want to delete this comment?')) {
@@ -46,7 +48,7 @@ CommentCard.propTypes = {
   commentObj: PropTypes.shape({
     content: PropTypes.string,
     productId: PropTypes.string,
-    userId: PropTypes.string,
+    user: PropTypes.string,
     id: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,

@@ -30,6 +30,7 @@ function ProductDetails() {
   useEffect(() => {
     showProductDetails();
     showComments();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productId]);
 
   return (

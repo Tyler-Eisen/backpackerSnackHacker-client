@@ -18,6 +18,7 @@ function CityShops() {
 
   useEffect(() => {
     showShops();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (

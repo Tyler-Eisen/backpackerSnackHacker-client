@@ -12,6 +12,23 @@ const getCommentsByProduct = (productId) => fetch(`${clientCredentials.databaseU
     throw error;
   });
 
+const getCommentById = (commentId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/comments/${commentId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      resolve(data);
+    })
+    .catch((error) => {
+      console.error('Error fetching comment by ID:', error);
+      reject(error);
+    });
+});
+
 const createComment = (commentObj) => fetch(`${clientCredentials.databaseURL}/comments`, {
   method: 'POST',
   headers: {
@@ -60,6 +77,7 @@ const deleteComment = (commentId) => fetch(`${clientCredentials.databaseURL}/com
 
 export {
   getCommentsByProduct,
+  getCommentById,
   createComment,
   updateComment,
   deleteComment,
