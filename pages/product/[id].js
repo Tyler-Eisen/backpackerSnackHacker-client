@@ -5,6 +5,7 @@ import { Image } from 'react-bootstrap';
 import { getProductById } from '../../utils/data/productData'; // Adjust the import path as needed
 import CommentCard from '../../components/CommentCard';
 import { getCommentsByProduct } from '../../utils/data/commentData';
+import CommentForm from '../../components/CommentForm';
 
 function ProductDetails() {
   const [productDetails, setProductDetails] = useState({});
@@ -54,6 +55,8 @@ function ProductDetails() {
         {comments.map((comment) => (
           <CommentCard key={comment.id} commentObj={comment} onUpdate={showComments} />
         ))}
+      </div>
+      <div> <CommentForm />
       </div>
     </>
   );
