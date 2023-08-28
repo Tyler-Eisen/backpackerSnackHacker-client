@@ -18,4 +18,33 @@ const getCityShops = (cityId) => new Promise((resolve, reject) => {
     });
 });
 
-export default getCityShops;
+const favoriteShop = (shopId, uid) => new Promise((resolve, reject) => {
+  fetch(`http://localhost:8000/shops/${shopId}/favorite`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `${uid}`,
+    },
+    body: JSON.stringify({
+      uid,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+const unfavoriteShop = (shopId, uid) => fetch(`http://localhost:8000/shops/${shopId}/unfavorite`, {
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `${uid}`,
+  },
+  body: JSON.stringify({ uid }),
+});
+
+export {
+  getCityShops,
+  favoriteShop,
+  unfavoriteShop,
+};

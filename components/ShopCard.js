@@ -2,17 +2,27 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import getCityShops from '../utils/data/shopData';
+import { favoriteShop, getCityShops, unfavoriteShop } from '../utils/data/shopData';
+import { useAuth } from '../utils/context/authContext';
 
-function ShopCard({ shopObj }) {
-  /* Defining a state variable shopDetails using the useState hook */
+function ShopCard({
+  shopObj,
+  favorited,
+  onUpdate,
+}) {
   const [shopDetails, setShopDetails] = useState({});
+  const { user } = useAuth();
+  const favorite = () => favoriteShop(shopObj.id, user.uid).then(() => onUpdate());
+  const unfavorite = () => unfavoriteShop(shopObj.id, user.uid).then(() => onUpdate());
 
   /* Defining a useEffect hook to load the shop details when the component mounts or when the shopObj prop changes */
   useEffect(() => {
+    console.warn('uid:', user.uid);
+    console.warn('shopObj:', { shopObj });
     getCityShops(shopObj.cityId.id).then(setShopDetails);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shopObj]);
 
   const cardStyles = {
@@ -47,6 +57,11 @@ function ShopCard({ shopObj }) {
             <p style={{ cursor: 'pointer' }}>View Details</p>
           </Link>
         </div>
+        {
+        favorited
+          ? <Button className="btn-danger" onClick={favorite}>Favorite</Button>
+          : <Button className="btn-success" onClick={unfavorite}>Unfavorite</Button>
+      }
       </Card>
     </>
   );
@@ -64,6 +79,8 @@ ShopCard.propTypes = {
       // ... other city properties if necessary
     }).isRequired,
   }).isRequired,
+  favorited: PropTypes.number.isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };
 
 export default ShopCard;

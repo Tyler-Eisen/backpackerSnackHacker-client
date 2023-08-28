@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import ShopCard from '../../components/ShopCard';
-import getCityShops from '../../utils/data/shopData';
+import { getCityShops } from '../../utils/data/shopData';
 
 function CityShops() {
   const [shops, setShops] = useState([]);
@@ -42,6 +42,7 @@ function CityShops() {
                   // add other city properties here if needed
                 },
               }}
+              onUpdate={showShops}
             />
           </div>
         ))}
