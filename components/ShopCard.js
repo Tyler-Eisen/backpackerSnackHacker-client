@@ -9,9 +9,9 @@ import { useAuth } from '../utils/context/authContext';
 
 function ShopCard({
   shopObj,
-  favorited,
   onUpdate,
 }) {
+  console.warn({ favorited: shopObj.favorited });
   const [shopDetails, setShopDetails] = useState({});
   const { user } = useAuth();
   const favorite = () => favoriteShop(shopObj.id, user.uid).then(() => onUpdate());
@@ -58,9 +58,9 @@ function ShopCard({
           </Link>
         </div>
         {
-        favorited
-          ? <Button className="btn-danger" onClick={favorite}>Favorite</Button>
-          : <Button className="btn-success" onClick={unfavorite}>Unfavorite</Button>
+        shopObj.favorited
+          ? <Button className="btn-danger" onClick={unfavorite}>Unfavorite</Button>
+          : <Button className="btn-success" onClick={favorite}>Favorite</Button>
       }
       </Card>
     </>
@@ -73,13 +73,13 @@ ShopCard.propTypes = {
     address: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     imageUrl: PropTypes.string,
+    favorited: PropTypes.number.isRequired,
     cityId: PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       name: PropTypes.string.isRequired,
       // ... other city properties if necessary
     }).isRequired,
   }).isRequired,
-  favorited: PropTypes.number.isRequired,
   onUpdate: PropTypes.func.isRequired,
 };
 
