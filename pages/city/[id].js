@@ -2,14 +2,16 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import ShopCard from '../../components/ShopCard';
 import { getCityShops } from '../../utils/data/shopData';
+import { useAuth } from '../../utils/context/authContext';
 
 function CityShops() {
   const [shops, setShops] = useState([]);
   const router = useRouter();
   const { id } = router.query;
+  const { user } = useAuth();
 
   const showShops = () => {
-    getCityShops(id).then((data) => {
+    getCityShops(id, user.uid).then((data) => {
       console.warn({ data });
       setShops(data);
       console.warn({ shops });
@@ -18,7 +20,6 @@ function CityShops() {
 
   useEffect(() => {
     showShops();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
@@ -36,10 +37,10 @@ function CityShops() {
                 address: shop.address,
                 name: shop.name,
                 imageUrl: shop.image_url,
+                favorited: shop.favorited,
                 cityId: {
                   id: shop.city_id.id,
                   name: shop.city_id.name,
-                  // add other city properties here if needed
                 },
               }}
               onUpdate={showShops}
