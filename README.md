@@ -1,9 +1,11 @@
-# React/Next.js Django Auth Template
-
+# Backpacker Snack Hacker
 ## Topics
 - [Get Started](#getting-started)
 - [Starting the Project](#starting-the-project)
 ___
+<img width="1728" alt="Screen Shot 2023-09-03 at 12 46 57 AM" src="https://github.com/Tyler-Eisen/backpackerSnackHacker-client/assets/109635106/aa8d7a50-e4c1-46fd-8590-ba6324084f7d">
+<img width="1728" alt="Screen Shot 2023-09-03 at 12 46 22 AM" src="https://github.com/Tyler-Eisen/backpackerSnackHacker-client/assets/109635106/1309bb3c-297c-4c35-837d-a5167bed4650">
+
 ## Getting Started
 ### Use Template
 #### 1. To get started, click the GREEN "Use this Template" button at the top of the repo
