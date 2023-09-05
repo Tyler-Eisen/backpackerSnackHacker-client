@@ -1,4 +1,4 @@
-# React/Next.js Django Auth Template
+# Backpacker Snack Hacker
 
 ## Topics
 - [Get Started](#getting-started)
