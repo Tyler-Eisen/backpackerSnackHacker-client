@@ -8,8 +8,6 @@ import { deleteProduct } from '../utils/data/productData';
 function ProductCard({ product, onUpdate }) {
   const { user } = useAuth();
   const router = useRouter();
-  console.warn({ product });
-  console.warn({ user });
 
   const deleteThisProduct = () => {
     if (window.confirm('Delete Post?')) {
@@ -18,7 +16,7 @@ function ProductCard({ product, onUpdate }) {
   };
   return (
     <div className="product-card">
-      <img src={product.image_url} alt={product.name} />
+      <img src={product.image_url} alt={product.name} className="product-card-image" />
       <Link href={`/product/${product.id}`} passHref>
         <h3>{product.name}</h3>
       </Link>

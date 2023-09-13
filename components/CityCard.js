@@ -15,40 +15,20 @@ function CityCard({ cityObj }) {
     getSingleCity(cityObj.id).then(setCityDetails);
   }, [cityObj]);
 
-  const cardStyles = {
-    display: 'flex',
-    flexDirection: 'row',
-    width: '100%',
-    backgroundColor: '#1E1E1E',
-    color: '#fff',
-    margin: '10px',
-    padding: '10px',
-    boxSizing: 'border-box',
-  };
-
-  const cardImageStyles = {
-    width: '200px',
-    height: '200px',
-    objectFit: 'cover',
-    marginRight: '20px',
-  };
-
   return (
     <>
       <Head>
         <title>{cityDetails.name}</title>
       </Head>
-      <Card style={cardStyles}>
-        <img src={cityDetails.image} alt={cityDetails.name} style={cardImageStyles} />
+      <Card className="city-card">
+        <img src={cityObj.image_url} alt={cityObj.name} />
         <div>
           <Link href={`/city/${cityObj.id}`} passHref>
             <h3 style={{ cursor: 'pointer' }}>{cityDetails.name}</h3>
           </Link>
-          <p>{cityObj.country}</p>
-          <p>{cityObj.population}</p>
-          {/* Add other city properties here */}
         </div>
       </Card>
+
     </>
   );
 }
@@ -57,9 +37,8 @@ CityCard.propTypes = {
   cityObj: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
-    country: PropTypes.string,
-    population: PropTypes.string, // if it's a string or number based on your model
-    // add other city properties here for PropTypes if needed
+    image_url: PropTypes.string,
+
   }).isRequired,
 };
 

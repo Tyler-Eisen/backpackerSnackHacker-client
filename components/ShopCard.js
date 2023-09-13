@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 import Head from 'next/head';
 import Link from 'next/link';
@@ -11,7 +12,6 @@ function ShopCard({
   shopObj,
   onUpdate,
 }) {
-  console.warn({ favorited: shopObj.favorited });
   const [shopDetails, setShopDetails] = useState({});
   const { user } = useAuth();
   const favorite = () => favoriteShop(shopObj.id, user.uid).then(() => onUpdate());
@@ -49,19 +49,18 @@ function ShopCard({
         <title>{shopObj.name}</title>
       </Head>
       <Card style={cardStyles}>
-        {shopDetails.imageUrl && <img src={shopDetails.imageUrl} alt={shopDetails.name} style={cardImageStyles} />}
+        <div style={{ backgroundImage: `url(${shopObj.imageUrl})`, ...cardImageStyles }} />
         <div>
-          <h3>{shopObj.name}</h3>
-          <p>Address: {shopObj.address}</p>
           <Link href={`/shop/${shopObj.id}`} passHref>
-            <p style={{ cursor: 'pointer' }}>View Details</p>
+            <h3 style={{ cursor: 'pointer' }}>{shopObj.name}</h3>
           </Link>
+          <p>Address: {shopObj.address}</p>
+          {
+            shopObj.favorited
+              ? <Button className="btn-danger" onClick={unfavorite}>Unfavorite</Button>
+              : <Button className="btn-success" onClick={favorite}>Favorite</Button>
+          }
         </div>
-        {
-        shopObj.favorited
-          ? <Button className="btn-danger" onClick={unfavorite}>Unfavorite</Button>
-          : <Button className="btn-success" onClick={favorite}>Favorite</Button>
-      }
       </Card>
     </>
   );

@@ -20,15 +20,13 @@ function CityShops() {
 
   useEffect(() => {
     showShops();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
-    <div>
+    <div className="city-shops-container">
       <h1>Shops</h1>
-      <div style={{
-        display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center',
-      }}
-      >
+      <div className="shopContainer">
         {shops.map((shop) => (
           <div key={`shop--${shop.id}`} className="shop">
             <ShopCard

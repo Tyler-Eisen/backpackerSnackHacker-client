@@ -1,5 +1,22 @@
 import { clientCredentials } from '../client';
 
+const getProducts = () => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/products`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      resolve(data);
+    })
+    .catch((error) => {
+      console.error('Error fetching products for shop:', error);
+      reject(error);
+    });
+});
+
 const getProductsByShop = (shopId) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/products?shop_id=${shopId}`, {
     method: 'GET',
@@ -86,6 +103,7 @@ const deleteProduct = (productId) => fetch(`${clientCredentials.databaseURL}/pro
     throw error;
   });
 export {
+  getProducts,
   getProductsByShop,
   createProduct,
   getProductById,

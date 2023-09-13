@@ -1,5 +1,23 @@
 import { clientCredentials } from '../client';
 
+const getSingleShop = (shopId, uid) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/shops/${shopId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `${uid}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // console.warn({ data });
+      resolve(data);
+    })
+    .catch((error) => {
+      console.warn('Error fetching shop by ID:', error);
+      reject(error);
+    });
+});
 const getCityShops = (cityId, uid) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/shops?city_id=${cityId}`, {
     method: 'GET',
@@ -48,4 +66,5 @@ export {
   getCityShops,
   favoriteShop,
   unfavoriteShop,
+  getSingleShop,
 };

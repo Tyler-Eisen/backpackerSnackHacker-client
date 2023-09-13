@@ -18,6 +18,111 @@ a {
 }
 
 body {
-  background-color: black;
+  background: linear-gradient(black 80%, #033103);
   color: whitesmoke;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  height: 100vh;
+  /* border: 2px solid orange */
+}
+
+.city-card-container {
+  display: flex;
+  width: 1000px;
+  justify-content: space-around; 
+  flex-wrap: wrap;
+}
+
+.city-card {
+  width: 380px;
+  margin: 20px; 
+  border: 10px solid transparent;
+  background-image: linear-gradient(rgba(31, 181, 122, 0.5), rgba(0, 0, 0, 0.5)); 
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+  box-shadow: inset 0 0 0 10px rgba(31, 181, 122, 0.5), inset 0 0 0 10px rgba(0, 0, 0, 0.5); 
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.navbar {
+  background: #033103 !important;
+  display: flex;
+  justify-content: space-between; 
+}
+
+.signOutBtn{
+  background: #033103 !important ;
+  border: 2px  #033103 !important;
+}
+.header-content {
+  display: flex;
+  align-items: center; /* vertically align the content in the center */
+}
+
+.navbar {
+  height: 40px;  /* Adjust this value to set the desired height */
+  line-height: 40px; /* This ensures vertical centering of the navbar content */
+}
+
+.navbar-brand, .nav-link, .signOutBtn {
+  font-size: 0.9em; /* Adjust the font size of navbar items for a better fit */
+}
+
+.city-shops-container {
+  height: 100vh; /* Takes up the full height of the viewport */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.shopContainer {
+  display: flex;
+  flex-wrap: wrap; /* wraps the items onto multiple lines */
+  justify-content: center; /* horizontally center items if there's extra space */
+  align-items: center; /* vertically center items if there's extra space */
+  gap: 20px; /* spacing between items */
+  padding: 20px; /* optional: spacing around the container */
+}
+
+
+.shopCard{
+  width: 282px;  
+  height: 325px;
+  position: relative; 
+}
+
+.cardImage {
+  width: 280px !important;  
+  height: 200px !important;
+  object-fit: cover;       /* Resize the image to cover the container */
+  object-position: center; /* Keep the center of the image in the center of the container */
+  display: block;          /* Ensures the image takes up all the given space */
+}
+
+.product-card {
+  float: left; /* Add this property to make them display next to each other */
+  margin: 20px; /* Adjust margins as needed */
+  border: 10px solid transparent;
+
+}
+
+.product-card-image {
+  width: 280px !important;  
+  height: 200px !important;
+  object-fit: cover;       /* Resize the image to cover the container */
+  object-position: center; /* Keep the center of the image in the center of the container */
+  display: block;          /* Ensures the image takes up all the given space */
+ 
+}
+
+.commentContainer{
+  /* height: '100vh';  */
+  min-height: 100%; 
+  display: flex;
+  flex-direction: column;
 }

@@ -1,20 +1,23 @@
-import { useMemo } from 'react';
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import React, { useState } from 'react';
+import ReactMapGl from 'react-map-gl';
 
-export default function MapComponent() {
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+export default function Map() {
+  // eslint-disable-next-line no-unused-vars
+  const [viewport, setViewport] = useState({
+    latitude: 45.4211,
+    longitude: -75.6903,
+    width: '100vw',
+    height: '100vh',
+    zoom: 10,
   });
 
-  if (!isLoaded) return <div>Loading...</div>;
-  return <Map />;
-}
-
-function Map() {
-  const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
   return (
-    <GoogleMap zoom={10} center={center} mapContainerClassName="map-container">
-      <Marker position={center} />
-    </GoogleMap>
+    <div>
+      <ReactMapGl
+        {...viewport}
+        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+      >Mappp
+      </ReactMapGl>
+    </div>
   );
 }

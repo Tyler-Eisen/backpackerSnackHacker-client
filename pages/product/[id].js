@@ -38,7 +38,7 @@ function ProductDetails() {
       <Head>
         <title>{productDetails?.name}</title>
       </Head>
-      <div className="mt-5 d-flex flex-wrap">
+      <div className="commentContainer mt-5 d-flex flex-wrap">
         <div className="d-flex flex-column" />
         <div className="text-white ms-5 details">
           <h5>
