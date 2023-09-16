@@ -9,6 +9,8 @@ function ProductCard({ product, onUpdate }) {
   const { user } = useAuth();
   const router = useRouter();
 
+  console.warn(user);
+
   const deleteThisProduct = () => {
     if (window.confirm('Delete Post?')) {
       deleteProduct(product.id).then(() => onUpdate());
@@ -21,7 +23,8 @@ function ProductCard({ product, onUpdate }) {
         <h3>{product.name}</h3>
       </Link>
       <p>Price: {product.price}</p>
-      {user && user.id === product.user && (
+
+      {user.id === product.user.id && (
         <>
           <button
             type="button"

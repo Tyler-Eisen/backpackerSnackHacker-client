@@ -40,7 +40,7 @@ function UpdateProductForm({ product }) {
     };
     if (product.id) {
       updateProduct(product.id, payload)
-        .then(() => router.push(`/shop/${product.shop}`));
+        .then(() => router.push(`/shop/${product.shop.id}`));
     } else {
       createProduct(payload)
         .then(() => router.push(`/shop/${product.shop}`))
