@@ -44,7 +44,7 @@ ProductCard.propTypes = {
     name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     image_url: PropTypes.string.isRequired,
-    user: PropTypes.string.isRequired,
+    user: PropTypes.number.isRequired,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
 };
