@@ -19,8 +19,6 @@ function ShopCard({
 
   /* Defining a useEffect hook to load the shop details when the component mounts or when the shopObj prop changes */
   useEffect(() => {
-    console.warn('uid:', user.uid);
-    console.warn('shopObj:', { shopObj });
     getCityShops(shopObj.cityId.id).then(setShopDetails);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shopObj]);

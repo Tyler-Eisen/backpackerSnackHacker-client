@@ -13,7 +13,6 @@ const initialState = {
 };
 
 function UpdateProductForm({ product }) {
-  console.warn('product:', product);
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
   const { user } = useAuth();
@@ -39,7 +38,6 @@ function UpdateProductForm({ product }) {
       ...formInput,
       userId: user.id,
     };
-    console.warn('Payload:', payload);
     if (product.id) {
       updateProduct(product.id, payload)
         .then(() => router.push(`/shop/${product.shop}`));

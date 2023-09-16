@@ -35,7 +35,6 @@ const ProductForm = () => {
       ...currentProduct,
       userId: user.id,
     };
-    console.warn('Payload:', payload);
     createProduct(payload)
       .then(() => router.push(`/shop/${currentProduct.shop}`))
       .catch((error) => {

@@ -42,7 +42,6 @@ function UpdateCommentForm({ comment }) {
       ...formInput,
       userId: user.id,
     };
-    console.warn('Payload:', payload);
     if (comment.id) {
       updateComment(comment.id, payload)
         .then(() => router.back());

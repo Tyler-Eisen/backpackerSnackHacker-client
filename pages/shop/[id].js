@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button } from 'react-bootstrap';
@@ -51,7 +50,7 @@ function ShopProducts() {
           overflowY: 'auto',
           display: 'flex',
           flexDirection: 'row',
-          flexWrap: 'wrap',
+          flexWrap: 'wrap', // This ensures elements wrap to the next row
         }}
       >
         <h1>Products</h1>

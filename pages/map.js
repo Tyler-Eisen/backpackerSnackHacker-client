@@ -15,7 +15,7 @@ export default function Map() {
     <div>
       <ReactMapGl
         {...viewport}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
       >Mappp
       </ReactMapGl>
     </div>

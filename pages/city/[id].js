@@ -12,9 +12,7 @@ function CityShops() {
 
   const showShops = () => {
     getCityShops(id, user.uid).then((data) => {
-      console.warn({ data });
       setShops(data);
-      console.warn({ shops });
     });
   };
 

@@ -13,8 +13,6 @@ function CommentCard({ commentObj, onUpdate }) {
   }
 
   const isCurrentUserComment = user.id === commentObj.user;
-  console.warn('user:', user);
-  console.warn('commentObj:', commentObj);
 
   const deleteThisComment = () => {
     if (window.confirm('Are you sure you want to delete this comment?')) {

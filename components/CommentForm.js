@@ -20,9 +20,6 @@ const CommentForm = ({ onUpdate }) => {
     productId: productId || '',
   });
 
-  console.warn('router.query:', router.query);
-  console.warn('productId:', productId);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCurrentComment((prevState) => ({
@@ -39,7 +36,6 @@ const CommentForm = ({ onUpdate }) => {
       userId: user.id,
       productId,
     };
-    console.warn('Payload:', payload);
     createComment(payload)
       .then(() => {
         onUpdate();

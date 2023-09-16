@@ -6,28 +6,35 @@ import { getProductById } from '../../utils/data/productData'; // Adjust the imp
 import CommentCard from '../../components/CommentCard';
 import { getCommentsByProduct } from '../../utils/data/commentData';
 import CommentForm from '../../components/CommentForm';
+import { getSingleShop } from '../../utils/data/shopData';
 
 function ProductDetails() {
   const [productDetails, setProductDetails] = useState({});
   const [comments, setComments] = useState([]);
+  const [shop, setShop] = useState([]);
   const router = useRouter();
   const { id: productId } = router.query;
+  // const { id: shopId } = shop;
 
   const showProductDetails = () => {
     getProductById(productId).then((data) => {
       setProductDetails(data);
-      console.warn('product details:', data);
     });
   };
 
   const showComments = () => {
     getCommentsByProduct(productId).then((data) => {
       setComments(data);
-      console.warn('comments:', data);
     });
   };
 
+  const getShop = () => {
+    getSingleShop(productId).then((data) => setShop(data));
+    console.warn('shop:', shop);
+  };
+
   useEffect(() => {
+    getShop();
     showProductDetails();
     showComments();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -48,6 +55,11 @@ function ProductDetails() {
             Name: {productDetails?.name}
             <br />
             Price: {productDetails?.price}
+            <br />
+            <br />
+            Shop: {shop.name}
+            <br />
+            Location: {shop.address}
           </h5>
         </div>
       </div>
