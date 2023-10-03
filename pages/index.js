@@ -16,7 +16,7 @@ function Home() {
 
   return (
     <div className="home-container">
-      <Image src="/images/bpsh.png" width="200" height="190" alt="logo" style={{ marginTop: '10px' }} />
+      <Image src="/images/bpsh2.png" width="200" height="190" alt="logo" style={{ marginTop: '10px' }} />
       <h1 className="home-title">Hello {user.fbUser.displayName}!</h1>
       <h2 className="cities-title">Below you&apos;ll find our city selection</h2>
       <div className="city-card-container">

@@ -1,0 +1,34 @@
+[
+  {
+    "model": "bpshapi.city",
+    "pk": 2,
+    "fields": {
+      "name": "Bangkok",
+      "image_url": "https://link-to-bangkok-image.com"
+    }
+  },
+  {
+    "model": "bpshapi.shop",
+    "pk": 3,
+    "fields": {
+      "name": "Tops Market",
+      "address": "789 Bangkok St, Bangkok, Thailand",
+      "image_url": "https://link-to-tops-market-image.com",
+      "city_id": 2,
+      "latitude": 13.744169776801037,
+      "longitude": 100.53016037599662
+    }
+  },
+  {
+    "model": "bpshapi.shop",
+    "pk": 4,
+    "fields": {
+      "name": "Gourmet Market",
+      "address": "012 Bangkok St, Bangkok, Thailand",
+      "image_url": "https://link-to-gourmet-market-image.com",
+      "city_id": 2,
+      "latitude": 13.716314700487874,
+      "longitude": 100.47900525097722
+    }
+  }
+]
