@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import ReactMapGl from 'react-map-gl';
+import ReactMapGl, { Marker } from 'react-map-gl';
+import shopData from '../utils/data/shops.json';
 
 export default function Map() {
-  // eslint-disable-next-line no-unused-vars
   const [viewport, setViewport] = useState({
     latitude: 13.7563,
     longitude: 100.5018,
@@ -11,16 +11,24 @@ export default function Map() {
     zoom: 10,
   });
 
+  console.log('shopData:', shopData);
+
   return (
     <div>
       <ReactMapGl
-        {...viewport}
+        {...viewport} // Spread the viewport properties here
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/mapbox/dark-v11"
-        onViewportChange={() => {
-          setViewport(viewport);
+        onViewportChange={(newViewport) => {
+          setViewport(newViewport); // Update the viewport state
         }}
-      />
+      >
+        {shopData.map((shop) => (
+          <Marker key={shop.pk} latitude={shop.fields.latitude} longitude={shop.fields.longitude}>
+            <div>{shop.fields.name}</div>
+          </Marker>
+        ))}
+      </ReactMapGl>
     </div>
   );
 }

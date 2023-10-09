@@ -1,13 +1,5 @@
 [
   {
-    "model": "bpshapi.city",
-    "pk": 2,
-    "fields": {
-      "name": "Bangkok",
-      "image_url": "https://link-to-bangkok-image.com"
-    }
-  },
-  {
     "model": "bpshapi.shop",
     "pk": 3,
     "fields": {
